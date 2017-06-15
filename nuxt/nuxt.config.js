@@ -22,6 +22,12 @@ module.exports = {
   */
   build: {
     vendor: ['axios'],
+    // loaders:[],
+    postcss: [
+      require('autoprefixer')({
+        browsers: ['last 3 versions']
+      })
+    ],
     /*
     ** Run ESLINT on save
     */
