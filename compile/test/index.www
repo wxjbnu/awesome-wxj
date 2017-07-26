@@ -1,0 +1,51 @@
+<template>
+  <div style="height:100%;display:flex;justify-content: center;align-items: center;">
+    <input type="text"> <br>
+    <p>{{token}}</p>
+    <p>{{userData}}</p>
+  </div>
+</template>
+<script>
+export default {
+  name: 'workPlus',
+  data() {
+    return {
+      // showLoading: true
+      token:null,
+      userData:null
+    }
+  },
+  computed: {
+    
+  },
+  methods: {
+    
+  },
+  created() {
+    
+  },
+  mounted() {
+    const that = this
+    config.viewWork().then((res)=>{
+      console.log(res)    
+      if(res.hasOwnProperty('user_ticket')){
+        that.token = res;
+        const params = {ticket:that.token.user_ticket}
+        this.$store.dispatch('workPlusGetUser', { params }).then(data => {
+            this.userData = data
+        }).catch(reason => {
+
+        })
+      }
+      
+    })
+  },
+  components: {
+
+  }
+}
+</script>
+
+<style lang="less">
+
+</style>
